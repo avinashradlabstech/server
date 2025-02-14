@@ -1,20 +1,33 @@
 import express from 'express';
-import mysql from "mysql2/promise";
-import { Resend } from 'resend';
-import dotenv from 'dotenv';
+import emailRoutes from './app/routes/emailRoute.js'
 
-import connectDB from '.app/config/db.js'
-import emailRoute from './app/routes/emailRoute.js'
+const allowedOrigins = [
+    'https://payapi-multipage-website.vercel.app',
+];
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST'],
+};
 
 
-// Deployment configuration
-//configure env file in dev mode
-dotenv.config()
+// Initialize Express app
+const app = express();
 
-// Connect to database
-connectDB()
+// Middleware to parse JSON
+app.use(bodyParser.json());
 
+// Email routes
+app.use("/api", emailRoutes);
 
-
-// Initialize Resend API
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

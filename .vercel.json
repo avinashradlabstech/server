@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/schedule-demo",
+      "dest": "/server.js"
+    },
+	{
+      "src": "/api/subscribe",
+      "dest": "/server.js"
+    }
+  ],
+  "env": {
+    "RESEND_API_KEY": "re_P2Hmv5Fi_JzYFZXNnD7XnVEw6DW6ojxhC",
+    "DB_HOST": "92.205.174.96",
+	 "DB_NAME": "testing_react",
+    "DB_USER": "testing_react_user",
+	"DB_PASSWORD": "Kxp.OU-SNMKy",
+	
+	
+  }
+}
