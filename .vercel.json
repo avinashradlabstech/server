@@ -9,16 +9,20 @@
 
   "routes": [
     {
+      "src": "/(.*)",
+      "dest": "server/server.js"
+    },
+    {
       "src": "/api/(.*)",
       "headers": { "Access-Control-Allow-Origin": "*" }
     },
     {
       "src": "/api/schedule-demo",
-      "dest": "/server.js"
+      "dest": "server/server.js"
     },
     {
       "src": "/api/subscribe",
-      "dest": "/server.js"
+      "dest": "server/server.js"
     }
   ],
   "env": {
