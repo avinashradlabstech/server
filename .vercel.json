@@ -6,7 +6,6 @@
       "use": "@vercel/node"
     }
   ],
-
   "routes": [
     {
       "src": "/(.*)",
@@ -14,20 +13,11 @@
     },
     {
       "src": "/api/(.*)",
-      "headers": { "Access-Control-Allow-Origin": "*" }
-    },
-    {
-      "src": "/api/schedule-demo",
-      "dest": "server.js"
-    },
-    {
-      "src": "/api/subscribe",
-
-      "dest": "server.js"
-    },
-    {
-      "src": "/api/subscribe",
-      "dest": "server.js"
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+      }
     }
   ],
   "env": {
