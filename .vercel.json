@@ -2,18 +2,27 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "index.js",
       "use": "@vercel/node"
     }
   ],
+
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "server.js"
+      "src": "/(.*)",
+      "dest": "index.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "server.js"
+      "src": "/api/(.*)",
+      "headers": { "Access-Control-Allow-Origin": "*" }
+    },
+    {
+      "src": "/api/schedule-demo",
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/subscribe",
+      "dest": "index.js"
     }
   ],
   "env": {
