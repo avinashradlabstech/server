@@ -10,7 +10,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/server.js"
+      "dest": "server.js"
     },
     {
       "src": "/api/(.*)",
@@ -22,7 +22,12 @@
     },
     {
       "src": "/api/subscribe",
-      "dest": "/server.js"
+
+      "dest": "server.js"
+    },
+    {
+      "src": "/api/subscribe",
+      "dest": "server.js"
     }
   ],
   "env": {
