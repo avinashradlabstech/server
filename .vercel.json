@@ -10,7 +10,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server/server.js"
+      "dest": "server.js"
     },
     {
       "src": "/api/(.*)",
@@ -18,11 +18,11 @@
     },
     {
       "src": "/api/schedule-demo",
-      "dest": "server/server.js"
+      "dest": "server.js"
     },
     {
       "src": "/api/subscribe",
-      "dest": "server/server.js"
+      "dest": "server.js"
     }
   ],
   "env": {
