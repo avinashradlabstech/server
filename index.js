@@ -1,17 +1,17 @@
 import express from 'express';
-import emailRoutes from './app/routes/emailRoutes.js'
+//import emailRoutes from './app/routes/emailRoutes.js'
 
 import cors from "cors";
 // Initialize Express app
 const app = express();
 
 
-app.use(cors({
-    origin: ['https://payapi-multipage-website.vercel.app', 'http://localhost:5173'], 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  }));
+// app.use(cors({
+//     origin: ['https://payapi-multipage-website.vercel.app', 'http://localhost:5173'], 
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true,
+//   }));
 
 
 // Middleware to parse JSON data in the request body
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
     });
   });
 
-app.use("/api", emailRoutes);
+//app.use("/api", emailRoutes);
 
 export default app;
 
