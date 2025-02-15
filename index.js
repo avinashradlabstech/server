@@ -1,4 +1,5 @@
 import express from 'express';
+import { VercelRequest, VercelResponse } from '@vercel/node'
 //import emailRoutes from './app/routes/emailRoutes.js'
 
 import cors from "cors";
@@ -28,7 +29,10 @@ app.get('/', (req, res) => {
 
 //app.use("/api", emailRoutes);
 
-export default app;
+
+// Export the Express app as a serverless function
+export default (req, res) => app(req, res);
+
 
 // Start the server
 // const PORT = process.env.PORT || 8080;
