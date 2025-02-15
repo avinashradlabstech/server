@@ -4,23 +4,21 @@ import { Resend } from 'resend';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
-// Load environment variables from .env file
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',   // SMTP server address (e.g., mail.yourdomain.com)
-  port: 587,                      // SMTP port (587 for TLS, 465 for SSL)
-  secure: false,                   // Set to true if using SSL
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_PASSWORD,
   },
   tls: {
-    rejectUnauthorized: false, // Accept self-signed certificates
+    rejectUnauthorized: false,
   },
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const scheduleDemoEmail = async (req, res) => {
 
@@ -88,17 +86,20 @@ export const subscribeEmail = async (req, res) => {
       [email, new Date()]
     );
 
-    const emailResponse = await resend.emails.send({
-      from: 'avinash@radlabs.tech',
+
+    const mailOptions = {
+      from: 'avinashdahariya@gmail.com',
       to: 'avinash@radlabs.tech',
       subject: 'New Subscriber Email',
       html: `<p>Email: ${email}</p>`,
-    });
+    };
 
-    if (result && emailResponse && emailResponse.status === 200) {
+    const emailResponse = await transporter.sendMail(mailOptions);
+
+    if (result && mailOptions) {
 
       res.json({
-        message: 'Email details saved and email sent successfully',
+        message: 'Mail subscribed',
         emailResponse,
       });
     } else {
