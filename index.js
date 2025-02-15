@@ -1,12 +1,19 @@
-import express from 'express';
-import { VercelRequest, VercelResponse } from '@vercel/node';
+// index.js
 
-const app = express();
+import http from 'http';
 
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to our API!' });
+// Create a server object
+const server = http.createServer((req, res) => {
+    // Set the response header
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    // Write some text to the response
+    res.end('Welcome to my simple Node.js app!');
 });
 
-export default (req, res) => app(req, res);
+// Define the port to listen on
+const port = 3000;
+
+// Start the server
+server.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
