@@ -1,19 +1,28 @@
-// index.js
+import express from 'express';
+import cors from 'cors';
+import emailRoutes from './app/routes/emailRoutes.js';
 
-import http from 'http';
+const app = express();
+const port = process.env.PORT || 3000; // Ensure the app runs on a port
 
-// Create a server object
-const server = http.createServer((req, res) => {
-    // Set the response header
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    // Write some text to the response
-    res.end('Welcome to my simple Node.js app!');
+// Middleware
+app.use(express.json()); // Parse JSON request body
+app.use(cors({
+    origin: ['https://payapi-multipage-website.vercel.app', 'http://localhost:5173'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+}));
+
+// API Routes
+app.use("/api", emailRoutes);
+
+// Default Route (Optional)
+app.get("/", (req, res) => {
+    res.send("Welcome to my Node.js API on Render!");
 });
 
-// Define the port to listen on
-const port = 3000;
-
-// Start the server
-server.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+// Start Server
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
